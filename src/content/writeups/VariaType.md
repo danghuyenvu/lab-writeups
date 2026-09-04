@@ -43,7 +43,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 - port 22: SSH
 - port 80: HTTP nginx
 Port 80 resolves to variatype.htb.
-![](../Images/Pasted%20image%2020260430224650.png)
+![](/images/Pasted%20image%2020260430224650.png)
 Vhost fuzzing:
 ```bash
 ffuf -u http://variatype.htb/ -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt -H "Host: FUZZ.variatype.htb" -fc 301 > vhosts
@@ -54,7 +54,7 @@ I filter code 301 cause I saw too many vhosts returning 301.
 └─$ cat vhosts          
 portal                  [Status: 200, Size: 2494, Words: 445, Lines: 59, Duration: 178ms]
 ```
-![](../Images/Pasted%20image%2020260430225254.png)
+![](/images/Pasted%20image%2020260430225254.png)
 Directory fuzzing:
 ```bash
 ffuf -u http://variatype.htb/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -recursion -v -mc 200-403 > ffuf-
@@ -64,7 +64,7 @@ ffuf -u http://portal.variatype.htb/FUZZ -w /usr/share/wordlists/dirbuster/direc
 ```
 VariaType is a service to help build variable fonts.
 Noticed it's using `fonttools`, `fontmake`, `gftools`:
-![](../Images/Pasted%20image%2020260430224718.png)
+![](/images/Pasted%20image%2020260430224718.png)
 A brief research for known vulnerables shows CVE-2025-66034 (haven't confirmed yet).
 ## [CVE-2025-66034](https://github.com/advisories/GHSA-768j-98cg-p3fv)
 ## Exploitation
@@ -122,7 +122,7 @@ www-data@variatype:~/portal.variatype.htb/public/files$ find / -type f -user ste
 ```
 reveals a `.bak` file: `/opt/process_client_submissions.bak`
 it's a backup file for the font processing pipeline using fontforge:
-![](../Images/Pasted%20image%2020260503110319.png)
+![](/images/Pasted%20image%2020260503110319.png)
 So I suspect that this user steve might be setting a cronjob to run this script to process font files.
 Try confirming in crontab:
 ```bash
@@ -232,6 +232,6 @@ Last login: Fri May 1 02:35:59 2026 from 10.10.15.103
 root@variatype:~# whoami
 root
 ```
-![](../Images/Pasted%20image%2020260503113311.png)
+![](/images/Pasted%20image%2020260503113311.png)
 # Summary
 # Remediation

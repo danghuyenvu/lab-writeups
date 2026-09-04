@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="600" height="220">
+  <rect width="600" height="220" fill="#1e1c16"/>
+  <text x="20" y="30" fill="#e8dcc4" font-family="monospace" font-size="14">$ nmap -sV -sC 10.10.10.14</text>
+  <text x="20" y="60" fill="#9ae66e" font-family="monospace" font-size="13">PORT     STATE SERVICE     VERSION</text>
+  <text x="20" y="85" fill="#e8dcc4" font-family="monospace" font-size="13">445/tcp  open  microsoft-ds Samba 4.3.11</text>
+  <text x="20" y="110" fill="#e8dcc4" font-family="monospace" font-size="13">8080/tcp open  http        Jenkins 2.303</text>
+  <text x="20" y="150" fill="#b5762a" font-family="monospace" font-size="12">placeholder screenshot — replace with your own scan output</text>
+</svg>

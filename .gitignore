@@ -25,3 +25,6 @@ dist-ssr
 
 # obsidian
 .obsidian/
+
+# unpublished
+src/content/drafts/

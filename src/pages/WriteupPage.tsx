@@ -2,13 +2,10 @@ import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import rehypeHighlight from 'rehype-highlight';
 import { getWriteupBySlug } from '../lib/writeups';
 
-// Resolve a markdown image path against the site's base URL, so images work
-// both in local dev (base "/") and on GitHub Pages (base "/repo-name/").
-// Write image paths in your markdown starting with a slash, e.g. /images/my-lab/scan.png,
-// with the actual file placed in public/images/my-lab/scan.png.
 function resolveImageSrc(src?: string): string {
   if (!src) return '';
   if (/^https?:\/\//.test(src)) return src; // external URLs pass through untouched
@@ -56,7 +53,7 @@ export default function WriteupPage() {
 
       <div className="prose-lab">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkBreaks]}
           rehypePlugins={[rehypeHighlight]}
           components={{
             img: ({ src, alt }) => (

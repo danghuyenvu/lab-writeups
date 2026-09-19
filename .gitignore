@@ -27,4 +27,5 @@ dist-ssr
 .obsidian/
 
 # unpublished
-src/content/drafts/
+drafts/
+publish.py
